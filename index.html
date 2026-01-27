@@ -49,6 +49,13 @@ body {
 /* ======================
    LANDING BUTTON
 ====================== */
+
+
+.button-circle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 60px rgba(212,175,55,0.9);
+}
+
 .button-circle {
   width: 220px;
   height: 220px;
@@ -58,14 +65,14 @@ body {
   color: var(--gold);
   font-size: 2.3rem;
   cursor: pointer;
-  box-shadow: 0 0 40px rgba(212,175,55,0.6);
-  transition: 0.3s ease;
+
+  /* Always looks like a real button */
+  box-shadow:
+    0 6px 0 #3a0a30,                 /* bottom edge */
+    0 12px 25px rgba(0,0,0,0.5),     /* depth shadow */
+    0 0 25px rgba(212,175,55,0.6);   /* glow */
 }
 
-.button-circle:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 60px rgba(212,175,55,0.9);
-}
 
 /* ======================
    INVITE CARD

@@ -73,6 +73,9 @@ body {
     0 0 25px rgba(212,175,55,0.6);   /* glow */
 }
 
+.button-circle {
+  -webkit-tap-highlight-color: transparent;
+}
 
 /* ======================
    INVITE CARD
@@ -118,17 +121,19 @@ body {
 /* ======================
    SLIDESHOW
 ====================== */
+
 .slideshow-container {
-  position: relative;     /* REQUIRED */
+  position: relative;
   width: 100%;
-  max-width: 420px;
-  height: 420px;
-  margin-bottom: 20px;
-  border-radius: 25px;
+  max-width: 500px;
+  aspect-ratio: 16 / 9;   /* 👈 this is the key */
+  margin: 0 auto 16px;
+  border-radius: 20px;
   overflow: hidden;
   background: rgba(0,0,0,0.25);
-  border: 2px solid rgba(255,215,0,0.25);
+  /* border: 2px solid rgba(255,215,0,0.25); */
 }
+
 
 .slide {
   position: absolute;
@@ -230,7 +235,7 @@ body {
 <body>
 
 <audio id="music" loop>
-  <source src="Chella_Magaley.mp3" type="audio/mpeg">
+  <source src="Chella_Magaleys.mp3" type="audio/mpeg">
 </audio>
 
 <!-- LANDING -->
@@ -244,9 +249,20 @@ body {
   <img src="cake.png" class="cake-img">
 
   <div class="slideshow-container">
-    <div class="slide"><img src="test1.jpg"></div>
-    <div class="slide"><img src="test2.jpg"></div>
-    <div class="slide"><img src="photo3.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai1.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai2.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai3.jpg"></div>
+	<div class="slide"><img src="slideshow_images/iyalisai4.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai5.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai6.jpg"></div>
+	<div class="slide"><img src="slideshow_images/iyalisai7.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai8.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai9.jpg"></div>
+	<div class="slide"><img src="slideshow_images/iyalisai10.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai12.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai13.jpg"></div>
+	<div class="slide"><img src="slideshow_images/iyalisai14.jpg"></div>
+    <div class="slide"><img src="slideshow_images/iyalisai11.jpg"></div>
   </div>
 
   <div class="invite-card">

@@ -5,43 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Iyalisai's Birthday Invitation</title>
 
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
 <style>
+/* ======================
+   THEME VARIABLES
+====================== */
 :root {
   --purple: #5d1451;
   --gold: #d4af37;
 }
 
+/* ======================
+   GLOBAL RESET
+====================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Georgia', serif;
 }
 
 body {
   background: radial-gradient(circle at top, #7a1f68, #2a0824);
   color: var(--gold);
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
 }
 
+/* ======================
+   PAGE WRAPPER
+====================== */
 .page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   text-align: center;
   padding: 20px;
 }
 
-/* ---------- LANDING ---------- */
-#landing {
-  animation: fadeIn 1.5s ease;
-}
-
+/* ======================
+   LANDING BUTTON
+====================== */
 .button-circle {
-  width: 190px;
-  height: 190px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   background: radial-gradient(circle, #7a1f68, #2a0824);
   border: 3px solid var(--gold);
@@ -57,12 +67,10 @@ body {
   box-shadow: 0 0 60px rgba(212,175,55,0.9);
 }
 
-/* ---------- INVITE ---------- */
-#invite {
-  display: none;
-}
-
-
+/* ======================
+   INVITE CARD
+====================== */
+#invite { display: none; }
 
 .invite-card {
   max-width: 720px;
@@ -74,107 +82,121 @@ body {
 }
 
 .invite-card h1 {
-  font-size: 2.2rem;
+  font-family: 'Playfair Display', serif;
   margin-bottom: 15px;
 }
 
-.invite-card p {
-  font-size: 1.2rem;
+.details {
+  color: white;
   line-height: 1.8;
 }
 
-.invite-card a {
+.label { color: #f5d27a; font-weight: 600; }
+.value { color: #fff; }
+.value a { color: #fff; }
+
+/* ======================
+   GLOWING TITLE
+====================== */
+.glowing-sentence {
+  font-size: 32px;
   color: var(--gold);
+  margin: 15px 0;
+  text-shadow: 
+    0 0 8px rgba(255,215,0,0.6),
+    0 0 16px rgba(255,215,0,0.5),
+    0 0 28px rgba(255,215,0,0.4);
 }
 
-/* ---------- CAKE ---------- */
-.cake {
-  margin: 25px auto;
-  position: relative;
-  width: 120px;
-  height: 100px;
+/* ======================
+   SLIDESHOW
+====================== */
+.slideshow-container {
+  position: relative;     /* REQUIRED */
+  width: 100%;
+  max-width: 420px;
+  height: 420px;
+  margin-bottom: 20px;
+  border-radius: 25px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.25);
+  border: 2px solid rgba(255,215,0,0.25);
 }
 
-.layer {
+.slide {
   position: absolute;
-  width: 120px;
-  height: 30px;
-  background: linear-gradient(#d4af37, #b8962e);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(212,175,55,0.5);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s ease;
 }
 
-.layer:nth-child(1) { bottom: 0; }
-.layer:nth-child(2) { bottom: 30px; width: 100px; left: 10px; }
-.layer:nth-child(3) { bottom: 60px; width: 80px; left: 20px; }
+.slide.active { opacity: 1; }
 
-.candle {
-  position: absolute;
-  width: 6px;
-  height: 25px;
-  background: var(--gold);
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: black;
 }
 
-.flame {
-  position: absolute;
-  width: 12px;
-  height: 18px;
-  background: radial-gradient(circle, gold, orange, red);
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  animation: flicker 0.2s infinite alternate;
+
+/* ======================
+   CAKE IMAGE
+====================== */
+.cake-img {
+  width: 180px;
+  animation: floatCake 3s ease-in-out infinite;
 }
 
-@keyframes flicker {
-  from { transform: translateX(-50%) scale(1); opacity: 0.9; }
-  to { transform: translateX(-50%) scale(1.2); opacity: 1; }
+@keyframes floatCake {
+  50% { transform: translateY(-8px); }
 }
 
-/* ---------- BALLOONS ---------- */
+/* ======================
+   BALLOONS
+====================== */
 .balloon {
-  position: absolute;
-  bottom: -150px;
-  width: 60px;
-  height: 80px;
+  position: fixed;
+  bottom: -100px;
+  width: 40px;
+  height: 60px;
   border-radius: 50%;
-  animation: float 15s infinite linear;
+  animation: float 10s linear infinite;
+  opacity: 0.7;
+  z-index: -1;
 }
 
-/* Knot (attached directly to balloon) */
-.balloon::before {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  width: 10px;
-  height: 6px;
-  background: inherit;
-  transform: translateX(-50%);
-  border-radius: 0 0 5px 5px;
-}
-
-/* Rope (starts exactly from knot bottom) */
 .balloon::after {
   content: "";
   position: absolute;
-  left: 50%;
-  top: 80px;            /* exactly equals balloon height */
   width: 2px;
-  height: 60px;
+  height: 65px;
   background: rgba(255,255,255,0.6);
+  left: 50%;
+  top: 60px;
   transform: translateX(-50%);
+}
+
+.balloon::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 5px;
+  background: inherit;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0 0 4px 4px;
 }
 
 @keyframes float {
   to { transform: translateY(-120vh); }
 }
 
-/* ---------- CONFETTI ---------- */
+/* ======================
+   CONFETTI
+====================== */
 .confetti {
   position: fixed;
   width: 6px;
@@ -188,79 +210,16 @@ body {
   to { transform: translateY(110vh) rotate(360deg); }
 }
 
-/* ---------- FIREWORK ---------- */
-.firework {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: gold;
-  border-radius: 50%;
-  animation: explode 1s linear forwards;
-}
-
-@keyframes explode {
-  to {
-    transform: translate(var(--x), var(--y));
-    opacity: 0;
-  }
-}
-
-/* ---------- ANIMATION ---------- */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
+/* ======================
+   RESPONSIVE
+====================== */
 @media(max-width:600px){
-  .invite-card h1{font-size:1.6rem;}
-  .invite-card p{font-size:1rem;}
+  .invite-card { padding: 20px; }
+  .glowing-sentence { font-size: 24px; }
 }
-
-
-.slideshow-container {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  height: 420px;
-  margin: 0 auto 20px;
-  border-radius: 25px;
-  overflow: hidden;
-  background: rgba(0,0,0,0.25);
-  border: 2px solid rgba(255,215,0,0.25);
-  box-shadow: 0 0 25px rgba(255,215,0,0.2);
-}
-
-/* Each slide */
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-
-/* Image behavior (THIS is the key fix) */
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* ensures full image visible */
-  object-position: center;
-  background: black;
-}
-
-/* Active slide */
-.slide.active {
-  opacity: 1;
-}
-
-
-.cake-img {
-  width: 180px;
-  animation: floatCake 3s ease-in-out infinite;
-}
-
 </style>
 </head>
+
 <body>
 
 <audio id="music" loop>
@@ -275,107 +234,87 @@ body {
 <!-- INVITE -->
 <div id="invite" class="page">
 
+  <img src="cake.png" class="cake-img">
 
-<img src="cake.png" class="cake-img">
-
-<div class="slideshow-container">
-  <div class="slide fade">
-    <img src="test1.jpg" />
+  <div class="slideshow-container">
+    <div class="slide"><img src="test1.jpg"></div>
+    <div class="slide"><img src="test2.jpg"></div>
+    <div class="slide"><img src="photo3.jpg"></div>
   </div>
-  <div class="slide fade">
-    <img src="test2.jpg" />
-  </div>
-  <div class="slide fade">
-    <img src="photo3.jpg" />
-  </div>
-</div>
 
   <div class="invite-card">
     <h1>Dear <span id="username">Friend</span>,</h1>
 
-    <p>
-      With hearts full of joy, we warmly invite you to celebrate a very special milestone —  
-      <br><strong>Iyalisai’s 1st Birthday Celebration</strong> ✨  
-      <br><br>
+    <p>We warmly invite you to celebrate</p>
 
-      📍 <strong>Venue:</strong>  
-      <a href="https://www.google.com/maps/search/Perfect+stay,+Kovilambakkam" target="_blank">
-        Perfect Stay, Kovilambakkam
-      </a><br>
+    <div class="glowing-sentence">
+      <strong>Iyalisai’s 1st Birthday Celebration ✨</strong>
+    </div>
 
-      🕖 <strong>Date & Time:</strong> March 8, 2026 · 7:00 PM  
-      <br><br>
-
-      Your blessings, smiles, and presence will make this evening truly unforgettable.  
-      We look forward to celebrating together.
-    </p>
+    <div class="details">
+      <div><span class="label">📅 Date:</span> <span class="value">March 8, 2026</span></div>
+      <div><span class="label">⏰ Time:</span> <span class="value">7:00 PM</span></div>
+      <div><span class="label">📍 Venue:</span>
+        <span class="value">
+          <a href="https://www.google.com/travel/search?ts=CAESCgoCCAMKAggDEAAaHBIaEhQKBwjqDxABGB4SBwjqDxABGB8YATICEAAqBwoFOgNJTlI&qs=CAEyE0Nnb0lsLS12cjZUQnlaVTVFQUU4CEIJEb6U8VbGSmviQgkRPccajVROiww&utm_campaign=sharing&utm_medium=link_btn&utm_source=htls">Perfect Stay, Kovilambakkam</a>
+        </span>
+      </div>
+	  <br>
+	  <p class="label">Your blessings, smiles, and presence will make this evening truly unforgettable.  
+      We look forward to celebrating together. </p>
+    </div>
+	
   </div>
-
 </div>
 
 <script>
-/* ENTER */
+/* ENTER INVITE */
 function enterInvite() {
-  document.getElementById("landing").style.display = "none";
-  document.getElementById("invite").style.display = "flex";
-  document.getElementById("music").play();
+  landing.style.display = "none";
+  invite.style.display = "flex";
+  music.play();
 }
 
-/* NAME */
-const params = new URLSearchParams(window.location.search);
-const name = params.get("name");
-if(name) document.getElementById("username").innerText = name;
+/* PERSONALIZED NAME */
+const name = new URLSearchParams(window.location.search).get("name");
+if (name) username.innerText = name;
 
 /* SLIDESHOW */
-let slides = document.querySelectorAll(".slide");
-let current = 0;
+const slides = document.querySelectorAll(".slide");
+let index = 0;
 
-function showSlide(index) {
-  slides.forEach(slide => slide.classList.remove("active"));
+function showSlide() {
+  slides.forEach(s => s.classList.remove("active"));
   slides[index].classList.add("active");
+  index = (index + 1) % slides.length;
 }
-
-function nextSlide() {
-  current = (current + 1) % slides.length;
-  showSlide(current);
-}
-
-showSlide(0);
-setInterval(nextSlide, 3500);
-
+showSlide();
+setInterval(showSlide, 3500);
 
 /* BALLOONS */
-for(let i=0;i<12;i++){
-  let b=document.createElement('div');
-  b.className='balloon';
-  b.style.left=Math.random()*100+'vw';
-  b.style.animationDuration=(6+Math.random()*6)+'s';
+const colors = [
+  "linear-gradient(#ffb6ff, #c77bd1)",
+  "linear-gradient(#ffd700, #d4af37)",
+  "linear-gradient(#c084fc, #7c3aed)",
+];
+
+for (let i = 0; i < 12; i++) {
+  const b = document.createElement("div");
+  b.className = "balloon";
+  b.style.left = Math.random() * 100 + "vw";
+  b.style.animationDuration = (6 + Math.random() * 6) + "s";
+  b.style.background = colors[Math.floor(Math.random() * colors.length)];
   document.body.appendChild(b);
 }
 
 /* CONFETTI */
-for(let i=0;i<40;i++){
-  let c=document.createElement('div');
-  c.className='confetti';
-  c.style.left=Math.random()*100+'vw';
-  c.style.animationDuration=(3+Math.random()*3)+'s';
+for (let i = 0; i < 40; i++) {
+  const c = document.createElement("div");
+  c.className = "confetti";
+  c.style.left = Math.random() * 100 + "vw";
+  c.style.animationDuration = (3 + Math.random() * 3) + "s";
   document.body.appendChild(c);
 }
-
-/* FIREWORKS */
-setInterval(()=>{
-  for(let i=0;i<20;i++){
-    let f=document.createElement('div');
-    f.className='firework';
-    f.style.left=50+'vw';
-    f.style.top=50+'vh';
-    f.style.setProperty('--x', (Math.random()*400-200)+'px');
-    f.style.setProperty('--y', (Math.random()*400-200)+'px');
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),1000);
-  }
-},2500);
 </script>
-
 </body>
 </html>

@@ -248,6 +248,48 @@ body {
   .invite-card { padding: 20px; }
   .glowing-sentence { font-size: 24px; }
 }
+
+/* ======================
+   OVAL HERO IMAGE
+====================== */
+
+.hero-oval {
+  width: 260px;
+  aspect-ratio: 3 / 4;          /* Perfect portrait ratio */
+  object-fit: cover;
+
+  /* Oval shape */
+  border-radius: 50% / 60%;
+
+  /* Royal gold frame */
+  border: 3px solid var(--gold);
+
+  /* Glow + depth */
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.5),
+    0 0 40px rgba(212,175,55,0.6);
+
+  margin-bottom: 28px;
+
+  /* Subtle elegance */
+  animation: floatHero 4s ease-in-out infinite;
+}
+
+/* Gentle floating animation */
+@keyframes floatHero {
+  50% { transform: translateY(-6px); }
+}
+
+/* Mobile tweak */
+@media (max-width: 600px) {
+  .hero-oval {
+    width: 210px;
+    margin-bottom: 22px;
+  }
+}
+
+
+
 </style>
 </head>
 
@@ -259,8 +301,22 @@ body {
 
 <!-- LANDING -->
 <div id="landing" class="page">
-  <button class="button-circle" onclick="enterInvite()">இயலிசை <span class="arrow">➜</span> </button>
+
+  <!-- OVAL HERO IMAGE -->
+  <img 
+    src="slideshow_images/iyalisailanding.png" 
+    alt="Iyalisai"
+    class="hero-oval"
+  >
+
+  <!-- LANDING BUTTON -->
+  <button class="button-circle" onclick="enterInvite()">
+    இயலிசை
+    <span class="arrow">➜</span>
+  </button>
+
 </div>
+
 
 <!-- INVITE -->
 <div id="invite" class="page">

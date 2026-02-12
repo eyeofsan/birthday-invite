@@ -288,6 +288,61 @@ body {
   }
 }
 
+.music-container {
+  position: fixed;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.music-container span {
+  position: absolute;
+  bottom: -50px;
+  font-size: 2.5rem;
+  animation: floatUp 10s linear infinite;
+  opacity: 0.8;
+}
+
+/* Random horizontal placement & timing */
+.music-container span:nth-child(1) { left: 10%; animation-duration: 8s; }
+.music-container span:nth-child(2) { left: 30%; animation-duration: 12s; }
+.music-container span:nth-child(3) { left: 50%; animation-duration: 10s; }
+.music-container span:nth-child(4) { left: 70%; animation-duration: 9s; }
+.music-container span:nth-child(5) { left: 90%; animation-duration: 11s; }
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.3);
+    opacity: 0;
+  }
+}
+
+#music-float span {
+  position: fixed;
+  bottom: -40px;
+  font-size: 2.5rem;
+  animation: floatUp 8s linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 
 
 </style>
@@ -316,6 +371,16 @@ body {
   </button>
 
 </div>
+
+<div class="music-container">
+  <span>🎵</span>
+  <span>🎶</span>
+  <span>🎼</span>
+  <span>🎵</span>
+  <span>🎶</span>
+</div>
+
+<div id="music-float"></div>
 
 
 <!-- INVITE -->
@@ -430,6 +495,28 @@ for (let i = 0; i < 40; i++) {
   c.style.animationDuration = (3 + Math.random() * 3) + "s";
   document.body.appendChild(c);
 }
+
+
+
+const symbols = ["🎵", "🎶", "🎼", "🎹", "🥁"];
+
+setInterval(() => {
+  const note = document.createElement("span");
+  note.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+
+  note.style.left = Math.random() * 100 + "vw";
+  note.style.animationDuration = 6 + Math.random() * 6 + "s";
+
+  document.body.appendChild(note);
+
+  setTimeout(() => {
+    note.remove();
+  }, 12000);
+}, 700);
+
+
+
+
 </script>
 </body>
 </html>

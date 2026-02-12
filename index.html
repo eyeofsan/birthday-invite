@@ -418,7 +418,10 @@ body {
     <div class="slide"><img src="slideshow_images/iyalisai11.jpg"></div>
   </div>
 
-  <div class="invite-card">
+ <div class="invite-card">
+
+  <!-- ENGLISH VERSION -->
+  <div class="lang lang-en">
     <h1>Dear <span id="username">Friend</span>,</h1>
 
     <p>We warmly invite you to celebrate</p>
@@ -431,16 +434,47 @@ body {
       <div><span class="label">📅 Date:</span> <span class="value">March 8, 2026</span></div>
       <div><span class="label">⏰ Time:</span> <span class="value">7:00 PM</span></div>
       <div><span class="label">📍 Venue:</span>
-        <span class="value">
-          <a href="https://www.google.com/travel/search?ts=CAESCgoCCAMKAggDEAAaHBIaEhQKBwjqDxABGB4SBwjqDxABGB8YATICEAAqBwoFOgNJTlI&qs=CAEyE0Nnb0lsLS12cjZUQnlaVTVFQUU4CEIJEb6U8VbGSmviQgkRPccajVROiww&utm_campaign=sharing&utm_medium=link_btn&utm_source=htls">Perfect Stay, Kovilambakkam</a>
+        <span class="value"> <a href="https://maps.app.goo.gl/FowBixwTr7G52Vby6" target="_blank">
+          Perfect Stay, Kovilambakkam </a>
         </span>
       </div>
-	  <br>
-	  <p class="label">Your blessings, smiles, and presence will make this evening truly unforgettable.  
-      We look forward to celebrating together. </p>
+      <br>
+      <p class="label">
+        Your blessings, smiles, and presence will make this evening truly unforgettable.  
+        We look forward to celebrating together.
+      </p>
     </div>
-	
   </div>
+
+  <!-- TAMIL VERSION -->
+  <div class="lang lang-ta" style="display:none;">
+    <h1>அன்புள்ள <span id="username-ta">நண்பரே</span>,</h1>
+
+    <p>அன்புடன் உங்களை அழைக்கிறோம்</p>
+
+    <div class="glowing-sentence">
+      <strong>இயலிசையின் முதல் பிறந்தநாள் விழா ✨</strong>
+    </div>
+
+    <div class="details">
+      <div><span class="label">📅 தேதி:</span> <span class="value">8 மார்ச் 2026</span></div>
+      <div><span class="label">⏰ நேரம்:</span> <span class="value">மாலை 7:00</span></div>
+      <div><span class="label">📍 இடம்:</span>
+        <span class="value"> <a href="https://maps.app.goo.gl/FowBixwTr7G52Vby6" target="_blank">
+          Perfect Stay, கோவிலம்பாக்கம் </a>
+        </span>
+      </div>
+      <br>
+      <p class="label">
+        உங்கள் ஆசீர்வாதம், புன்னகை மற்றும் வருகை  
+        இந்த மாலை நேரத்தை மறக்க முடியாததாக மாற்றும்.  
+        உங்களுடன் கொண்டாட ஆவலுடன் காத்திருக்கிறோம்.
+      </p>
+    </div>
+  </div>
+
+</div>
+
 </div>
 
 <script>
@@ -470,7 +504,13 @@ function enterInvite() {
 
 /* PERSONALIZED NAME */
 const name = new URLSearchParams(window.location.search).get("name");
-if (name) username.innerText = name;
+/* if (name) username.innerText = name; */
+
+if (name) {
+  document.getElementById("username").innerText = name;
+  document.getElementById("username-ta").innerText = name;
+}
+
 
 /* SLIDESHOW */
 const slides = document.querySelectorAll(".slide");
@@ -528,6 +568,23 @@ setInterval(() => {
 }, 700);
 
 
+/* LANGUAGE TOGGLE (ENGLISH ↔ TAMIL) */
+
+const englishBlock = document.querySelector(".lang-en");
+const tamilBlock = document.querySelector(".lang-ta");
+
+let isEnglish = true;
+
+setInterval(() => {
+  if (isEnglish) {
+    englishBlock.style.display = "none";
+    tamilBlock.style.display = "block";
+  } else {
+    tamilBlock.style.display = "none";
+    englishBlock.style.display = "block";
+  }
+  isEnglish = !isEnglish;
+}, 10000); // 30 seconds
 
 
 </script>

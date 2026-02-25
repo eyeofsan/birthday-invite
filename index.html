@@ -363,7 +363,7 @@ body {
 
 <body>
 
-<audio id="music" loop>
+<audio id="music" >
   <source src="Chella_Magaley.mp3" type="audio/mpeg">
 </audio>
 
@@ -516,7 +516,22 @@ function enterInvite() {
   }, 80);
 }
 
+// Start fade-out after 35 seconds (you can change to 30000 or 40000)
+setTimeout(() => {
+  let fadeOutVol = music.volume;
 
+  const fadeOut = setInterval(() => {
+    fadeOutVol -= 0.02;
+
+    if (fadeOutVol <= 0) {
+      music.volume = 0;
+      music.pause();
+      clearInterval(fadeOut);
+    } else {
+      music.volume = fadeOutVol;
+    }
+  }, 100); // controls smoothness
+}, 35000);
 
 /* PERSONALIZED NAME */
 const name = new URLSearchParams(window.location.search).get("name");
